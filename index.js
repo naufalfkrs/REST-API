@@ -320,4 +320,74 @@ app.post("/ganjilgenap", (req,res) => {
     }
     res.json(response)
 })
-//                                      LATIHAN SOAL                                      //                              
+//                                      LATIHAN SOAL                                      //   
+
+
+
+//                                      LATIHAN SOAL                                      // 
+app.get("/kalkulator/:awal/:akhir", (req,res) => {
+    let awal = Number(req.params.awal)
+    let akhir = Number(req.params.akhir)
+    let penjumlahan = awal+akhir
+    let pengurangan = awal-akhir
+    let perkalian = awal*akhir
+    let pembagian = awal/akhir
+    let response = {
+        Angka1: awal,
+        Angka2: akhir,
+        result:{
+            Penjumlahan: penjumlahan,
+            Pengurangan: pengurangan,
+            Perkalian: perkalian,
+            Pembagian: pembagian
+        }
+    }
+res.json(response)
+})
+
+app.post("/perulanganFor", (req,res) => {
+    let awal = Number(req.body.awal)
+    let akhir = Number(req.body.akhir)
+    let kelipatan = Number(req.body.kelipatan)
+    let i
+    let tampung = new Array()
+    let total = 0
+
+    for (i=awal; i<=akhir; i+=kelipatan) {
+        tampung.push(i)
+        total +=i
+    }
+    let response = {
+        tampung,
+        Total: total
+    }
+res.json(response)
+})
+
+app.post("/matrix", (req,res) => {
+    let matrixA = [
+        [1, 2],
+        [3, 4]
+    ]
+
+    let matrixB = [
+        [1, 2],
+        [4, 6]
+    ]
+    let hasil = new Array()
+    let i
+    let j
+
+    for (i=0; i<2; i++) {
+        for (j=0; j<2; j++) {
+            hasil.push(matrixA[i][j] + matrixB[i][j])
+        }
+    }
+    let response = {
+        MatrixA: matrixA,
+        MatrixB: matrixB,
+        Penjumlahan: hasil
+    }
+res.json(response)
+})
+//                                      LATIHAN SOAL                                      // 
